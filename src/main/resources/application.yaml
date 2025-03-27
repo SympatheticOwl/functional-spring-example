@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: example
+  threads:
+    virtual:
+      enabled: true
+
+logging:
+  level:
+    org.ldamler: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health
+      base-path: /
+      cors:
+        allowed-origins:
+          - "*"
+        allowed-methods:
+          - "*"
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+example:
+  dummy:
+    route: "http://localhost:8080"
+    connection-timeout: 20000
+    read-timeout: 20000
