@@ -1,12 +1,12 @@
 package org.ldamler.example.configs;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.ldamler.example.clients.DummyClient;
 import org.ldamler.example.configs.properties.ExampleProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.client.ClientHttpRequestFactories;
-import org.springframework.boot.web.client.ClientHttpRequestFactorySettings;
+import org.springframework.boot.http.client.ClientHttpRequestFactoryBuilder;
+import org.springframework.boot.http.client.HttpClientSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
@@ -44,7 +44,7 @@ public class ExampleConfig {
         var client = RestClient.builder()
                 .baseUrl(props.route())
                 .requestInterceptor(requestInterceptor)
-                .requestFactory(ClientHttpRequestFactories.get(ClientHttpRequestFactorySettings.DEFAULTS
+                .requestFactory(ClientHttpRequestFactoryBuilder.detect().build(HttpClientSettings.defaults()
                         .withConnectTimeout(Duration.ofMillis(props.connectionTimeout()))
                         .withReadTimeout(Duration.ofMillis(props.readTimeout()))
                 ))

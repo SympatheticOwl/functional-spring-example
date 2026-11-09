@@ -1,6 +1,6 @@
 package org.ldamler.example.web.handlers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.ldamler.example.clients.DummyClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.function.ServerRequest;
